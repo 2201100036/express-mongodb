@@ -12,7 +12,7 @@ mongoose.connect(MONGO_URL)
 .then(() => console.log("データベース接続成功"))
 .catch((err) => console.log(err));
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname)); 
 
 app.get('/notes_from_b', async (req, res) => {
     try {

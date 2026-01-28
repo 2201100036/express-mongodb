@@ -6,7 +6,7 @@ const cors = require('cors');
 app.use(cors());
 
 mongoose.connect("mongodb+srv://2201100036:natuyasumi5176@cluster0.kp1ld0r.mongodb.net/notes?appName=Cluster0")
-.then(() => console.log("データベース接続に成功しました"))
+.then(() => console.log("データベース接続成功"))
 .catch((err) => console.log(err));
 
 app.use(express.static(__dirname));

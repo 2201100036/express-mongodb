@@ -20,6 +20,6 @@ app.get('/notes_from_b', async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
+app.listen(30016, () => {
     console.log("サーバが起動しました");
 });

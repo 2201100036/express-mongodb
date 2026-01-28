@@ -1,11 +1,14 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const PORT = process.env.PORT || 3000;
+const MONGO_URL = process.env.MONGO_URL;
 
 app.use(cors());
 
-mongoose.connect("mongodb+srv://2201100036:natuyasumi5176@cluster0.kp1ld0r.mongodb.net/notes?appName=Cluster0")
+mongoose.connect(MONGO_URL)
 .then(() => console.log("データベース接続成功"))
 .catch((err) => console.log(err));
 
@@ -20,6 +23,6 @@ app.get('/notes_from_b', async (req, res) => {
     }
 });
 
-app.listen(30016, () => {
+app.listen(PORT, () => {
     console.log("サーバが起動しました");
 });

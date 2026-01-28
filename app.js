@@ -21,5 +21,5 @@ app.get('/notes_from_b', async (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log("サーバが起動しました。http://localhost:3000/notes_from_b を開いてください");
+    console.log("サーバが起動しました");
 });

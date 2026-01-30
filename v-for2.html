@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>MongoDBデータ表示</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        table { border-collapse: collapse; width: 90%; margin: 20px auto; font-family: sans-serif; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        h1 { text-align: center; color: #333; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>MongoDBのデータ一覧</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>名前 (name)</th>
+                    <th>メールアドレス (mail)</th>
+                    <th>電話番号 (tel)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="note in notes" :key="note._id">
+                    <td>{{ note.name }}</td>
+                    <td>{{ note.mail }}</td>
+                    <td>{{ note.tel }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                notes: [] // ここにデータが入る
+         }
+        },
+        mounted() {
+        // 画面が開いたらすぐにデータを取得しに行く
+            this.getNotes();
+        },
+        methods: {
+            async getNotes() {
+                try {
+                    const response = await axios.get('http://153.120.121.157:30016/notes_from_b');
+                    this.notes = response.data;
+                    console.log("データ取得成功:", this.notes);
+                } catch (error) {
+                    console.error("データ取得エラー:", error);
+                }
+            }
+        }
+    }).mount('#app');
+    </script>
+</body>
+</html>
